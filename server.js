@@ -23,7 +23,9 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
   const customerEmailTemplate = `
     <div style="font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        <h1 style="color: #4CAF50; text-align: center;">Thank you for your order, ${orderDetails.name}!</h1>
+        <h1 style="color: #4CAF50; text-align: center;">Thank you for your order, ${
+          orderDetails.name
+        }!</h1>
         <p style="text-align: center; font-size: 16px; color: #555;">We appreciate your business. Below is a summary of your order:</p>
 
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -31,7 +33,6 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
             <tr style="background-color: #f9f9f9; color: #4CAF50;">
               <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Product</th>
               <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Price</th>
-              <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Quantity</th>
             </tr>
           </thead>
           <tbody>
@@ -40,8 +41,9 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
                 (item) => `
                 <tr>
                   <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">${item.name}</td>
-                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">₹${parseFloat(item.price).toFixed(2)}</td>
-                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd; text-align: center;">${item.quantity}</td>
+                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">
+  ${item.price}
+</td>
                 </tr>
               `
               )
@@ -50,10 +52,14 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
         </table>
 
         <div style="text-align: right; margin: 20px 0;">
-          <p style="font-size: 18px; font-weight: bold;">Total: ₹${parseFloat(orderDetails.totalPrice).toFixed(2)}</p>
+          <p style="font-size: 18px; font-weight: bold;">Total: ₹${parseFloat(
+            orderDetails.totalPrice
+          ).toFixed(2)}</p>
         </div>
 
-        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${orderDetails.upiReference}</strong></p>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.upiReference
+        }</strong></p>
 
         <div style="text-align: center; margin-top: 30px;">
           <p style="font-size: 16px; color: #777;">For any assistance, WhatsApp us at: <a href="https://wa.me/919999999999" style="color: #4CAF50; text-decoration: none;">+91 9999999999</a></p>
@@ -72,7 +78,9 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
     <div style="font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;">
       <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
         <h1 style="color: #FF6347; text-align: center;">New Order Received!</h1>
-        <p style="font-size: 16px; color: #555;">A new order has been placed by <strong>${orderDetails.name}</strong>.</p>
+        <p style="font-size: 16px; color: #555;">A new order has been placed by <strong>${
+          orderDetails.name
+        }</strong>.</p>
         <p style="font-size: 16px; color: #555;">Here are the details:</p>
 
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -80,7 +88,6 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
             <tr style="background-color: #f9f9f9; color: #FF6347;">
               <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Product</th>
               <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Price</th>
-              <th style="padding: 10px 15px; border-bottom: 1px solid #ddd;">Quantity</th>
             </tr>
           </thead>
           <tbody>
@@ -89,8 +96,7 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
                 (item) => `
                 <tr>
                   <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">${item.name}</td>
-                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">₹${parseFloat(item.price).toFixed(2)}</td>
-                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd; text-align: center;">${item.quantity}</td>
+                  <td style="padding: 10px 15px; border-bottom: 1px solid #ddd;">${item.price}</td>
                 </tr>
               `
               )
@@ -99,11 +105,29 @@ const sendOrderEmails = async (customerEmail, ownerEmail, orderDetails) => {
         </table>
 
         <div style="text-align: right; margin: 20px 0;">
-          <p style="font-size: 18px; font-weight: bold;">Total: ₹${parseFloat(orderDetails.totalPrice).toFixed(2)}</p>
+          <p style="font-size: 18px; font-weight: bold;">Total: ₹${parseFloat(
+            orderDetails.totalPrice
+          ).toFixed(2)}</p>
         </div>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.address
+        }</strong></p>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.city
+        }</strong></p>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.zip
+        }</strong></p>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.email
+        }</strong></p>
 
-        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${orderDetails.upiReference}</strong></p>
-        <p style="font-size: 16px; color: #555;">Customer Contact: <strong>${orderDetails.phone}</strong></p>
+        <p style="font-size: 16px; color: #333; margin: 20px 0;">UPI Reference / Transaction ID: <strong>${
+          orderDetails.upiReference
+        }</strong></p>
+        <p style="font-size: 16px; color: #555;">Customer Contact: <strong>${
+          orderDetails.phone
+        }</strong></p>
       </div>
     </div>
   `;
@@ -142,6 +166,10 @@ app.post("/checkout", async (req, res) => {
       totalPrice: totalPrice,
       upiReference: formData.upiReference,
       phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      zip: formData.zip,
+      email: formData.email,
     });
 
     res.status(200).json({ message: "Order placed successfully!" });
